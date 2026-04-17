@@ -15,5 +15,8 @@ node_modules/
 *.pem
 npm-debug.log*
 
+# TypeScript build cache
+tsconfig.tsbuildinfo
+
 # Vercel
 .vercel
