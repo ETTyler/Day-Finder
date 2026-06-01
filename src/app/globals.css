@@ -19,3 +19,40 @@ input[type='date']::-webkit-calendar-picker-indicator {
   opacity: 0.5;
   cursor: pointer;
 }
+
+/* Tiptap editor prose styles */
+.rich-notes-editor p        { margin: 0 0 2px; }
+.rich-notes-editor ul       { list-style: disc; padding-left: 14px; margin: 2px 0; }
+.rich-notes-editor ol       { list-style: decimal; padding-left: 14px; margin: 2px 0; }
+.rich-notes-editor li       { margin: 1px 0; }
+.rich-notes-editor strong   { font-weight: 700; }
+.rich-notes-editor em       { font-style: italic; }
+
+/* Print: notes HTML rendered in PrintLayout */
+.print-notes p      { margin: 0 0 3px; }
+.print-notes ul     { list-style: disc; padding-left: 14px; margin: 2px 0; }
+.print-notes ol     { list-style: decimal; padding-left: 14px; margin: 2px 0; }
+.print-notes li     { margin: 1px 0; }
+.print-notes strong { font-weight: 700; }
+.print-notes em     { font-style: italic; }
+
+/* Print media — visibility approach works across ancestor boundaries */
+@media print {
+  body { visibility: hidden; }
+
+  #temp-print-overlay {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+  }
+
+  #temp-print-overlay * { visibility: visible; }
+
+  @page {
+    size: A4;
+    margin: 1.5cm 2cm;
+  }
+}

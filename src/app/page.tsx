@@ -1,10 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import ParkSearch from '@/components/ParkSearch'
 import FilterPanel from '@/components/FilterPanel'
 import ResultsTable from '@/components/ResultsTable'
 import type { Park, DayResult, Filters } from '@/lib/types'
+import { buildTripUrl } from '@/lib/tripLinks'
 
 function todayIso(): string {
   const d = new Date()
@@ -153,8 +155,39 @@ export default function Home() {
               totalDays={totalDays}
               topN={filters.topN}
             />
+            {results!.length > 0 && selectedPark && (
+              <Link
+                href={buildTripUrl(selectedPark, filters, results!.slice(0, 10))}
+                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-[#C8440B] text-[#C8440B] text-sm font-medium hover:bg-[#C8440B] hover:text-white transition-colors mt-4"
+              >
+                Plan my trip →
+              </Link>
+            )}
           </div>
         )}
+
+        {/* Plan a trip — standalone entry, always visible */}
+        <div className="mt-12 pt-6 border-t border-[#E4E2D9]">
+          <div className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <p className="text-sm font-medium text-[#1C1B14]">Planning a trip?</p>
+              <p className="text-xs text-[#706F5C] mt-0.5">
+                Transport options, accommodation &amp; a day-by-day itinerary builder.
+              </p>
+            </div>
+            <Link
+              href={
+                selectedPark
+                  ? `/trip?parkId=${selectedPark.id}&parkName=${encodeURIComponent(selectedPark.name)}&parkCountry=${encodeURIComponent(selectedPark.country)}`
+                  : '/trip'
+              }
+              className="shrink-0 px-4 py-2 rounded-lg border border-[#C8440B] text-[#C8440B] text-sm font-medium hover:bg-[#C8440B] hover:text-white transition-colors"
+            >
+              Plan a trip
+            </Link>
+          </div>
+        </div>
+
       </div>
     </div>
   )
