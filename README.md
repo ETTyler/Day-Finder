@@ -1,6 +1,6 @@
 # Day Finder
 
-Find the quietest days to visit any theme park. Search from hundreds of parks worldwide, set your date range and filters, and get a ranked list of the least crowded days to visit — pulled from live crowd calendar data.
+Find the quietest days to visit any theme park. Search from hundreds of parks worldwide, set your date range and filters, and get a ranked list of the least crowded days to visit.
 
 ## Features
 
